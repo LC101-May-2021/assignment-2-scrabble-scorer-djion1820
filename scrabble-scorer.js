@@ -36,7 +36,7 @@ function oldScrabbleScorer(word) {
 function initialPrompt() {
   console.log("Let's play some scrabble!");
    let word = input.question ("Enter a word to score:");
-  console.log(oldScrabbleScorer(word));
+  //console.log(oldScrabbleScorer(word));
 
 }
 
@@ -55,8 +55,8 @@ function initialPrompt() {
   word = word.toUpperCase();
   vowelBonusScoreArray = word.split('');
   letterPoints = 0
-    for(let i=0; i<vowelBonusScoreArray.length ; i++){
-      if (vowelBonusScoreArray[i] === 'A' || vowelBonusScoreArray[i] === 'E' || vowelBonusScoreArray[i] === 'I' || vowelBonusScoreArray[i] === 'O' || vowelBonusScoreArray[i] === 'U'){
+    for(let i=0; i<vowelBonusScoreA.length ; i++){
+      if (vowelBonusScoreA[i] === 'A' || vowelBonusScore[i] === 'E' || vowelBonusScoreA[i] === 'I' || vowelBonusScoreA[i] === 'O' || vowelBonusScoreA[i] === 'U'){
         letterPoints+=3
       } else {
         letterPoints +=1
@@ -87,14 +87,26 @@ const scoringAlgorithms = [simpleScoreO,vowelBonussCoreO,scrabbleScoreO];
 
 function scorerPrompt(word) {
   typeOfScore = input.question("Which scoring algorithm would you like to use?\n\n0 - Simple: One point per character\n1 - Vowel Bonus: Vowels are worth 3 points\n2 - Scrabble: Uses scrabble point system\n Enter 0,1, or 2:");
+  console.log(scoringAlgorithms[typeOfScore].name);
 }
 
-function transform() {};
 
-let newPointStructure;
+function transform(oldPointStructure) {
+let newPointStructure ={}
+for (let newPoints in oldPointStructure){
+  for(let i = 0; i < oldPointStructure[newPoints].length; i++){
+  newPointStructure[oldPointStructure[newPoints][i]]= Number(newPoints)
+  }
+}
+return newPointStructure
+};
+
+let newPointStructure = transform (oldPointStructure);
+
 
 function runProgram() {
    initialPrompt();
+   scorerPrompt();
    
    
 }
@@ -113,4 +125,3 @@ module.exports = {
 	runProgram: runProgram,
 	scorerPrompt: scorerPrompt
 };
-
