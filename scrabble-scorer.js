@@ -28,23 +28,66 @@ function oldScrabbleScorer(word) {
 	}
 	return letterPoints;
  }
+ 
 
 // your job is to finish writing these functions and variables that we've named //
 // don't change the names or your program won't work as expected. //
 
 function initialPrompt() {
-   console.log("Let's play some scrabble! Enter a word:");
+  console.log("Let's play some scrabble!");
+   let word = input.question ("Enter a word to score:");
+  console.log(oldScrabbleScorer(word));
+
+}
+
+
+
+
+ function simpleScore (word){
+   word = word.toUpperCase();
+   let letterpoints = "";
+   simpleScoreArray = word.split('');
+   letterPoints = simpleScoreArray.length
+   return letterPoints
+ };
+
+ function vowelBonusScore(word){
+  word = word.toUpperCase();
+  vowelBonusScoreArray = word.split('');
+  letterPoints = 0
+    for(let i=0; i<vowelBonusScoreArray.length ; i++){
+      if (vowelBonusScoreArray[i] === 'A' || vowelBonusScoreArray[i] === 'E' || vowelBonusScoreArray[i] === 'I' || vowelBonusScoreArray[i] === 'O' || vowelBonusScoreArray[i] === 'U'){
+        letterPoints+=3
+      } else {
+        letterPoints +=1
+      }
+    }
+  return letterPoints
+};
+let scrabbleScore;
+let = simpleScoreO = {
+  name: 'Simple Score',
+  description: 'Each letter is worth 1 pt.',
+  scoringFunction: simpleScore
+} ;
+
+let vowelBonussCoreO = {
+  name: 'Bonus Vowels',
+  description: 'Vowel are 3 pts, consonants are 1 pt.',
+  scoringFunction: vowelBonusScore
 };
 
-let simpleScore;
+let scrabbleScoreO = {
+  name: 'Scrabble',
+  description: 'The traditional scoring algorithm.',
+  scoringFunction: ''
+};
 
-let vowelBonusScore;
+const scoringAlgorithms = [simpleScoreO,vowelBonussCoreO,scrabbleScoreO];
 
-let scrabbleScore;
-
-const scoringAlgorithms = [];
-
-function scorerPrompt() {}
+function scorerPrompt(word) {
+  typeOfScore = input.question("Which scoring algorithm would you like to use?\n\n0 - Simple: One point per character\n1 - Vowel Bonus: Vowels are worth 3 points\n2 - Scrabble: Uses scrabble point system\n Enter 0,1, or 2:");
+}
 
 function transform() {};
 
@@ -52,6 +95,7 @@ let newPointStructure;
 
 function runProgram() {
    initialPrompt();
+   
    
 }
 
