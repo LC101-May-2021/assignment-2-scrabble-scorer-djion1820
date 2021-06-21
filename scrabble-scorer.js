@@ -32,13 +32,14 @@ function oldScrabbleScorer(word) {
 
 // your job is to finish writing these functions and variables that we've named //
 // don't change the names or your program won't work as expected. //
-
+let word =""
 function initialPrompt() {
   console.log("Let's play some scrabble!");
-   let word = input.question ("Enter a word to score:");
-  //console.log(oldScrabbleScorer(word));
-
-}
+   word = input.question ("Enter a word to score:");
+   return word
+  //console.log(oldScrabbleScorer(word))
+  };
+  //console.log(word);
 
 
 
@@ -53,7 +54,7 @@ function initialPrompt() {
 
  function vowelBonusScore(word){
   word = word.toUpperCase();
-  vowelBonusScoreArray = word.split('');
+  vowelBonusScoreA = word.split('');
   letterPoints = 0
     for(let i=0; i<vowelBonusScoreA.length ; i++){
       if (vowelBonusScoreA[i] === 'A' || vowelBonusScore[i] === 'E' || vowelBonusScoreA[i] === 'I' || vowelBonusScoreA[i] === 'O' || vowelBonusScoreA[i] === 'U'){
@@ -80,19 +81,25 @@ let vowelBonussCoreO = {
 let scrabbleScoreO = {
   name: 'Scrabble',
   description: 'The traditional scoring algorithm.',
-  scoringFunction: ''
+  scoringFunction: simpleScore
 };
 
 const scoringAlgorithms = [simpleScoreO,vowelBonussCoreO,scrabbleScoreO];
 
 function scorerPrompt(word) {
-  typeOfScore = input.question("Which scoring algorithm would you like to use?\n\n0 - Simple: One point per character\n1 - Vowel Bonus: Vowels are worth 3 points\n2 - Scrabble: Uses scrabble point system\n Enter 0,1, or 2:");
-  console.log(scoringAlgorithms[typeOfScore].name);
-}
+  let typeOfScore = input.question("Which scoring algorithm would you like to use?\n\n0 - Simple: One point per character\n1 - Vowel Bonus: Vowels are worth 3 points\n2 - Scrabble: Uses scrabble point system\n Enter 0,1, or 2:");
+  let typeoFscore = scoringAlgorithms[typeOfScore];
+  return typeoFscore
+  //console.log('Score for'(scoringAlgorithms))
+  //console.log(scoringAlgorithms[typeOfScore].scoringFunction);//.name);
+  
+      
+  };
+
 
 
 function transform(oldPointStructure) {
-let newPointStructure ={}
+let newPointStructure ={};
 for (let newPoints in oldPointStructure){
   for(let i = 0; i < oldPointStructure[newPoints].length; i++){
   newPointStructure[oldPointStructure[newPoints][i]]= Number(newPoints)
@@ -100,17 +107,20 @@ for (let newPoints in oldPointStructure){
 }
 return newPointStructure
 };
-
+//console.log(transform(oldPointStructure));
 let newPointStructure = transform (oldPointStructure);
-
+//console.log("Score for",initialPrompt,":",transform(oldPointStructure))
 
 function runProgram() {
    initialPrompt();
-   scorerPrompt();
+   let algorObject = scorerPrompt();
+   let userScore = algorObject.scoringFunction(word);
+   console.log(`Score for ${word}: ${userScore}`);
+   //console.log(transform(word));
    
    
 }
-
+//console.log(word);
 // Don't write any code below this line //
 // And don't change these or your program will not run as expected //
 module.exports = {
