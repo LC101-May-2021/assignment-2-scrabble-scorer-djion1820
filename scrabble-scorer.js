@@ -124,6 +124,7 @@ return newPointStructure
 };
 //console.log(transform(oldPointStructure));
 let newPointStructure = transform (oldPointStructure);
+newPointStructure[""] = 0;
 //console.log("Score for",initialPrompt,":",transform(oldPointStructure))
 
 function runProgram() {
