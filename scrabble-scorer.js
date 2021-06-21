@@ -65,8 +65,23 @@ function initialPrompt() {
     }
   return letterPoints
 };
-let scrabbleScore;
-let = simpleScoreO = {
+let scrabbleScore = function(word) {
+  word = word.toUpperCase();
+  let letterPoints = 0;
+
+  for (let i = 0; i < word.length; i++) {
+
+    for (pointValue in oldPointStructure) {
+      if (oldPointStructure[pointValue].includes(word[i])) {
+        letterPoints += Number(pointValue);
+      }
+
+    }
+  }
+
+  return letterPoints;
+};
+let  simpleScoreO = {
   name: 'Simple Score',
   description: 'Each letter is worth 1 pt.',
   scoringFunction: simpleScore
@@ -81,7 +96,7 @@ let vowelBonussCoreO = {
 let scrabbleScoreO = {
   name: 'Scrabble',
   description: 'The traditional scoring algorithm.',
-  scoringFunction: vowelBonusScore
+  scoringFunction: scrabbleScore
 };
 
 const scoringAlgorithms = [simpleScoreO,vowelBonussCoreO,scrabbleScoreO];
