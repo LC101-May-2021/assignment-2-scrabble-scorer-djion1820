@@ -114,7 +114,7 @@ function scorerPrompt(word) {
 
 
 function transform(oldPointStructure) {
-let newPointStructure ={};
+let newPointStructure =[""];
 for (let newPoints in oldPointStructure){
   for(let i = 0; i < oldPointStructure[newPoints].length; i++){
   newPointStructure[oldPointStructure[newPoints][i]]= Number(newPoints)
