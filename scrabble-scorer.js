@@ -65,6 +65,7 @@ function initialPrompt() {
     }
   return letterPoints
 };
+
 let scrabbleScore = function(word) {
   word = word.toUpperCase();
   let letterPoints = 0;
